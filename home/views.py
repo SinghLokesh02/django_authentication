@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login,logout
 
 
 
@@ -28,6 +28,7 @@ def login(request):
         print(name,password)
         
         if user is not None:
+            
             return redirect('index')
         else:
             return HttpResponse("The username and password didn't match")
@@ -36,3 +37,8 @@ def login(request):
 
 def index(request):
     return render(request,"index.html")
+
+def Logout(request):
+    logout(request)
+    return redirect("login")
+    
